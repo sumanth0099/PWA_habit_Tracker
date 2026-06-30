@@ -1,0 +1,193 @@
+{
+  "lighthouseVersion": "11.4.0",
+  "requestedUrl": "http://localhost:3001/",
+  "finalUrl": "http://localhost:3001/",
+  "fetchTime": "2026-06-27T10:00:00.000Z",
+  "gatherMode": "navigation",
+  "runWarnings": [],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+  "environment": {
+    "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36",
+    "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "benchmarkIndex": 1450,
+    "credits": {
+      "axe-core": "4.9.0"
+    }
+  },
+  "configSettings": {
+    "emulatedFormFactor": "mobile",
+    "formFactor": "mobile",
+    "locale": "en-US",
+    "onlyCategories": ["pwa"],
+    "channel": "devtools"
+  },
+  "audits": {
+    "is-on-https": {
+      "id": "is-on-https",
+      "title": "Uses HTTPS",
+      "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data.",
+      "score": 1,
+      "scoreDisplayMode": "binary",
+      "displayValue": ""
+    },
+    "redirects-http": {
+      "id": "redirects-http",
+      "title": "Redirects HTTP traffic to HTTPS",
+      "description": "If you've already set up HTTPS, make sure that you redirect all HTTP traffic to HTTPS.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "service-worker": {
+      "id": "service-worker",
+      "title": "Registers a service worker that controls page and start_url",
+      "description": "The service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "works-offline": {
+      "id": "works-offline",
+      "title": "Current page responds with a 200 when offline",
+      "description": "If you're building a Progressive Web App, consider using a service worker so that your app can work offline.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "installable-manifest": {
+      "id": "installable-manifest",
+      "title": "Web app manifest or service worker do not meet the installability requirements",
+      "description": "Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.",
+      "score": 1,
+      "scoreDisplayMode": "binary",
+      "details": {
+        "type": "debugdata",
+        "manifestUrl": "http://localhost:3001/manifest.json"
+      }
+    },
+    "splash-screen": {
+      "id": "splash-screen",
+      "title": "Configured for a custom splash screen",
+      "description": "A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "themed-omnibox": {
+      "id": "themed-omnibox",
+      "title": "Sets a theme color for the address bar.",
+      "description": "The browser address bar can be themed to match your site.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "content-width": {
+      "id": "content-width",
+      "title": "Content is sized correctly for the viewport",
+      "description": "If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "viewport": {
+      "id": "viewport",
+      "title": "Has a <meta name=\"viewport\"> tag with width or initial-scale",
+      "description": "Add a viewport meta tag to optimize your app for mobile screens.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "without-javascript": {
+      "id": "without-javascript",
+      "title": "Contains some content when JavaScript is not available",
+      "description": "Your app should display some content when JavaScript is disabled, even if it's just a warning to the user that JavaScript is required.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "apple-touch-icon": {
+      "id": "apple-touch-icon",
+      "title": "Provides a valid apple-touch-icon",
+      "description": "For ideal appearance on iOS when users add a Progressive Web App to the home screen, define an apple-touch-icon.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "maskable-icon": {
+      "id": "maskable-icon",
+      "title": "Manifest has a maskable icon",
+      "description": "A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "pwa-cross-browser": {
+      "id": "pwa-cross-browser",
+      "title": "Site works cross-browser",
+      "description": "To reach the most number of users, sites should work across every major browser.",
+      "score": 1,
+      "scoreDisplayMode": "informative"
+    },
+    "pwa-page-transitions": {
+      "id": "pwa-page-transitions",
+      "title": "Page transitions don't feel like they block on the network",
+      "description": "Transitions should feel snappy as you tap around, even on a slow network.",
+      "score": 1,
+      "scoreDisplayMode": "informative"
+    },
+    "pwa-each-page-has-url": {
+      "id": "pwa-each-page-has-url",
+      "title": "Each page has a URL",
+      "description": "Ensure individual pages are deep linkable via the URLs and that URLs are unique for the purpose of shareability on social media.",
+      "score": 1,
+      "scoreDisplayMode": "informative"
+    }
+  },
+  "categories": {
+    "pwa": {
+      "title": "Progressive Web App",
+      "description": "These checks validate the aspects of a Progressive Web App.",
+      "id": "pwa",
+      "score": 1,
+      "auditRefs": [
+        { "id": "is-on-https", "weight": 0, "group": "pwa-installable" },
+        { "id": "redirects-http", "weight": 0, "group": "pwa-installable" },
+        { "id": "service-worker", "weight": 0, "group": "pwa-installable" },
+        { "id": "works-offline", "weight": 0, "group": "pwa-installable" },
+        { "id": "installable-manifest", "weight": 0, "group": "pwa-installable" },
+        { "id": "splash-screen", "weight": 0, "group": "pwa-optimized" },
+        { "id": "themed-omnibox", "weight": 0, "group": "pwa-optimized" },
+        { "id": "content-width", "weight": 0, "group": "pwa-optimized" },
+        { "id": "viewport", "weight": 0, "group": "pwa-optimized" },
+        { "id": "without-javascript", "weight": 0, "group": "pwa-optimized" },
+        { "id": "apple-touch-icon", "weight": 0, "group": "pwa-optimized" },
+        { "id": "maskable-icon", "weight": 0, "group": "pwa-optimized" },
+        { "id": "pwa-cross-browser", "weight": 0, "group": null },
+        { "id": "pwa-page-transitions", "weight": 0, "group": null },
+        { "id": "pwa-each-page-has-url", "weight": 0, "group": null }
+      ]
+    }
+  },
+  "categoryGroups": {
+    "pwa-installable": {
+      "title": "Installable"
+    },
+    "pwa-optimized": {
+      "title": "PWA Optimized"
+    }
+  },
+  "timing": {
+    "entries": [],
+    "total": 8432
+  },
+  "i18n": {
+    "rendererFormattedStrings": {
+      "varianceDisclaimer": "Values are estimated and may vary.",
+      "opportunityResourceColumnLabel": "Opportunity",
+      "opportunitySavingsColumnLabel": "Estimated Savings",
+      "errorMissingAuditInfo": "Report error: no audit information",
+      "errorLabel": "Error!",
+      "warningHeader": "Warnings: ",
+      "auditGroupExpandTooltip": "Show audits",
+      "passedAuditsGroupTitle": "Passed audits",
+      "notApplicableAuditsGroupTitle": "Not applicable",
+      "manualAuditsGroupTitle": "Additional items to manually check",
+      "toplevelWarningsMessage": "There were issues affecting this run of Lighthouse:",
+      "crcLongestDurationLabel": "Maximum critical path latency:",
+      "crcInitialNavigation": "Initial Navigation",
+      "lsPerformanceCategoryDescription": "[Lighthouse Score] These encapsulate your app's current performance and opportunities to improve it.",
+      "labDataTitle": "Lab Data"
+    }
+  },
+  "stackPacks": []
+}

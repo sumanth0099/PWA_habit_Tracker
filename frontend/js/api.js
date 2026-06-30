@@ -8,11 +8,10 @@
 import { queueRequest, getPendingCount } from './db.js';
 
 // Backend API base URL
-// In production (Vercel), points to the Render-hosted backend.
-// In local dev, points to localhost:3001.
-export const API_BASE = window.location.hostname === 'localhost'
-  ? 'http://localhost:3001'
-  : 'https://YOUR_RENDER_URL.onrender.com';
+// Since the Express backend serves the frontend as static files,
+// we use an empty string for same-origin requests. This works for
+// local dev (http://localhost:3001), Docker, and any deployment.
+export const API_BASE = '';
 
 // UI element for sync status feedback
 let syncStatusEl = null;
