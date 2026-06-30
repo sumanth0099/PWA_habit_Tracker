@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6C63FF" />
+  <meta name="description" content="A production-ready Progressive Web App for tracking your daily habits with offline support, background sync, and push notifications." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Habits" />
+
+  <title>PWA Habit Tracker — Build Better Habits Every Day</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- APP CONTAINER — data-testid required by test suite         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="app-container" data-testid="app-container">
+
+  <!-- ─── Header ──────────────────────────────────────────── -->
+  <header class="app-header" role="banner">
+    <div class="app-logo">
+      <img src="/icons/icon-192x192.png" alt="Habit Tracker logo" width="36" height="36" />
+      <h1>Habit Tracker</h1>
+    </div>
+
+    <div class="header-right">
+      <span id="network-indicator" aria-live="polite">🟢 Online</span>
+      <!-- Sync Status — required by test suite -->
+      <span data-testid="sync-status" class="sync-status synced" aria-live="polite">Synced</span>
+    </div>
+  </header>
+
+  <!-- ─── Main Content ─────────────────────────────────────── -->
+  <main class="app-main" role="main" id="main-content">
+
+    <div class="app-grid">
+
+      <!-- LEFT COLUMN: Habit List + Add Form -->
+      <div class="left-column">
+
+        <!-- Habits Section -->
+        <section aria-labelledby="habits-heading">
+          <div class="section-header">
+            <h2 id="habits-heading">My Habits</h2>
+            <p>Track your daily progress and build streaks 🔥</p>
+          </div>
+
+          <!-- Habit List -->
+          <div id="habit-list" role="list" aria-label="Habit list">
+            <!-- Habits are rendered here by app.js -->
+            <div class="empty-state">
+              <div class="empty-icon">⏳</div>
+              <p>Loading habits...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Calendar Heatmap -->
+        <section aria-labelledby="calendar-heading" style="margin-top: 1.5rem;">
+          <div class="glass-card">
+            <div id="calendar-view" aria-label="Monthly completion calendar">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Add Habit + Notifications + Debug Panel -->
+      <aside class="right-column" aria-label="Controls and status">
+
+        <!-- Add Habit Card -->
+        <div class="glass-card" style="margin-bottom: 1.25rem;">
+          <div class="section-header">
+            <h2>Add New Habit</h2>
+            <p>What do you want to build?</p>
+          </div>
+
+          <form id="add-habit-form" aria-label="Add habit form" novalidate>
+            <div>
+              <label class="form-label" for="habit-name-input">Habit Name</label>
+              <input
+                type="text"
+                id="habit-name-input"
+                class="form-input"
+                placeholder="e.g. Read for 30 minutes"
+                maxlength="80"
+                required
+                aria-required="true"
+                autocomplete="off"
+              />
+            </div>
+
+            <div>
+              <label class="form-label">Pick a Color</label>
+              <div id="color-picker" role="group" aria-label="Habit color picker">
+                <!-- Swatches rendered by app.js -->
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="add-habit-btn">
+              ✨ Add Habit
+            </button>
+          </form>
+        </div>
+
+        <!-- Push Notifications Card -->
+        <div class="glass-card" style="margin-bottom: 1.25rem;">
+          <div class="section-header">
+            <h2>Notifications</h2>
+            <p>Get reminders to stay on track</p>
+          </div>
+          <!-- Enable Notifications Button — required by test suite -->
+          <button
+            data-testid="enable-notifications"
+            id="enable-notifications-btn"
+            type="button"
+            aria-label="Enable push notifications"
+          >
+            🔔 Enable Notifications
+          </button>
+        </div>
+
+        <!-- Developer Debug Panel — required by test suite -->
+        <div class="glass-card debug-panel" aria-label="Service worker debug panel">
+          <h4>🛠 Developer Debug Panel</h4>
+
+          <div class="debug-row">
+            <span class="debug-label">SW State</span>
+            <!-- SW State — required by test suite -->
+            <span data-testid="sw-state" class="debug-value" aria-live="polite">loading...</span>
+          </div>
+
+          <div class="debug-row">
+            <span class="debug-label">Cache Version</span>
+            <!-- Cache Version — required by test suite -->
+            <span data-testid="cache-version" class="debug-value" aria-live="polite">—</span>
+          </div>
+
+          <div class="debug-row">
+            <span class="debug-label">Background Sync</span>
+            <span id="bg-sync-support" class="debug-value">checking...</span>
+          </div>
+
+          <div class="debug-row">
+            <span class="debug-label">Push Support</span>
+            <span id="push-support" class="debug-value">checking...</span>
+          </div>
+
+          <div class="debug-row">
+            <span class="debug-label">IndexedDB</span>
+            <span id="idb-support" class="debug-value">checking...</span>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- ─── Footer ───────────────────────────────────────────── -->
+  <footer class="app-footer" role="contentinfo">
+    <p>PWA Habit Tracker &copy; 2025 — Built with ❤️ and service workers</p>
+  </footer>
+
+</div><!-- /#app-container -->
+
+<!-- Toast Container -->
+<div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+<!-- ─── Feature Detection Script ─────────────────────────── -->
+<script>
+  // Populate debug panel feature checks
+  document.getElementById('bg-sync-support').textContent =
+    ('SyncManager' in window) ? 'supported ✓' : 'not supported';
+  document.getElementById('push-support').textContent =
+    ('PushManager' in window) ? 'supported ✓' : 'not supported';
+  document.getElementById('idb-support').textContent =
+    ('indexedDB' in window) ? 'supported ✓' : 'not supported';
+</script>
+
+<!-- ─── Main App Script (ES Module) ──────────────────────── -->
+<script type="module" src="/js/app.js"></script>
+
+</body>
+</html>
