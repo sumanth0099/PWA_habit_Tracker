@@ -7,8 +7,12 @@
 
 import { queueRequest, getPendingCount } from './db.js';
 
-// Backend API base URL — adjust if hosting the backend elsewhere
-export const API_BASE = 'http://localhost:3001';
+// Backend API base URL
+// In production (Vercel), points to the Render-hosted backend.
+// In local dev, points to localhost:3001.
+export const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:3001'
+  : 'https://YOUR_RENDER_URL.onrender.com';
 
 // UI element for sync status feedback
 let syncStatusEl = null;

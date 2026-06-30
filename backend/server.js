@@ -15,13 +15,15 @@ const VAPID_PUBLIC_KEY = process.env.VAPID_PUBLIC_KEY;
 const VAPID_PRIVATE_KEY = process.env.VAPID_PRIVATE_KEY;
 const VAPID_EMAIL = process.env.VAPID_EMAIL || 'mailto:admin@example.com';
 
-if (!VAPID_PUBLIC_KEY || !VAPID_PRIVATE_KEY) {
-  console.error('❌  VAPID keys are missing. Please set VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY in your .env file.');
-  console.error('    Generate them with: npx web-push generate-vapid-keys');
-  process.exit(1);
+const vapidConfigured = !!(VAPID_PUBLIC_KEY && VAPID_PRIVATE_KEY);
+if (!vapidConfigured) {
+  console.warn('⚠️  VAPID keys are missing — push notifications will be disabled.');
+  console.warn('    Generate them with: npx web-push generate-vapid-keys');
+} else {
+  webpush.setVapidDetails(VAPID_EMAIL, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
 }
 
-webpush.setVapidDetails(VAPID_EMAIL, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+
 
 // ─── In-Memory Stores ─────────────────────────────────────────────────────────
 const subscriptions = new Map(); // userId → PushSubscription
@@ -140,11 +142,15 @@ app.get('/api/vapid-public-key', (req, res) => {
   res.json({ publicKey: VAPID_PUBLIC_KEY });
 });
 
-// ─── Start Server ─────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`🚀  PWA Habit Tracker backend running on port ${PORT}`);
-  console.log(`    Health check: http://localhost:${PORT}/health`);
-  console.log(`    VAPID public key: ${VAPID_PUBLIC_KEY.slice(0, 20)}...`);
-});
+// ─── Start Server (only when run directly, not when imported by Vercel) ───────
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀  PWA Habit Tracker backend running on port ${PORT}`);
+    console.log(`    Health check: http://localhost:${PORT}/health`);
+    if (vapidConfigured) {
+      console.log(`    VAPID public key: ${VAPID_PUBLIC_KEY.slice(0, 20)}...`);
+    }
+  });
+}
 
 module.exports = app;
