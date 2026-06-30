@@ -1,0 +1,28 @@
+{
+  "name": "PWA Habit Tracker",
+  "short_name": "Habits",
+  "description": "A production-ready Progressive Web App for tracking your daily habits with offline support and push notifications.",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#6C63FF",
+  "background_color": "#0f0c29",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "lifestyle"],
+  "screenshots": []
+}
